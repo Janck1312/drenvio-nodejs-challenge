@@ -10,7 +10,7 @@ class ProductService {
     async findAll() 
     {
         try {
-            return await this.productEntitie.find({ stock:!0 });    
+            return await this.productEntitie.find({ stock: { $ne:0 } });    
         } catch (error) {
             return error.message;
         }
@@ -29,9 +29,7 @@ class ProductService {
                     result = special_price;
                 }
             });
-            delete product.stock;
-            delete product._id;
-            return !result ? product : result;  
+            return !result ? { product_name:product.product_name, basePrice: product.price } : result;  
         } catch (error) {
             return error.message;
         }
@@ -49,7 +47,6 @@ class ProductService {
     async findProductByName(name) {
         try {
             return await this.productEntitie.findOne({ product_name:name });
-            //({ product_name: name });
         } catch (error) {
             return error.message;
         }
