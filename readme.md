@@ -1,5 +1,9 @@
 # NodeJs-Challenge-API
 
+## For Config
+
+Create a new File named " .env " copying example.env & replacing content by your config
+
 ## For run
 
     npm run start
